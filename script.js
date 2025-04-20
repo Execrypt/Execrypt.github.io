@@ -106,4 +106,14 @@ document.addEventListener("DOMContentLoaded", () => {
             typingEffectContainer.style.transform = `translate(-50%, -50%) rotateX(${xRotation}deg) rotateY(${yRotation}deg)`;
         });
     }
+
+    // Toggle dropdown functionality for FAQ
+    document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', () => {
+            const faqItem = button.parentElement;
+            faqItem.classList.toggle('open');
+        });
+    });
+
+    // Remove dropdown-based FAQ logic
 });

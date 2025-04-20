@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ItsDani - Portfolio</title>
+    <title>ItsDani</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="orangeheart.ico" type="image/x-icon"> <!-- Add favicon -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script> <!-- tsParticles library -->
+    <script src="particles-config.js" defer></script> <!-- Custom particle configuration -->
 </head>
 <body>
+    <div id="tsparticles"></div> <!-- Container for particle animation -->
     <video id="background-video" autoplay muted loop>
         <source src="purpvid.mp4" type="video/mp4">
         Your browser does not support the video tag.
@@ -33,6 +37,46 @@
         </div>
     </section>
     <main>
+        <section id="faq" class="section">
+            <div class="gradient-box">Some info</div>
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <button class="faq-question">
+                    When did I start doing what I do?
+                    <span class="dropdown-arrow"></span>
+                </button>
+                <div class="faq-answer">
+                    <p>Can remember it since I was 6 or 7</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    Am I going to do more than what I do now?
+                    <span class="dropdown-arrow"></span>
+                </button>
+                <div class="faq-answer">
+                    <p>Duh, who won't?</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    Why do I do this?
+                    <span class="dropdown-arrow"></span>
+                </button>
+                <div class="faq-answer">
+                    <p>There is always a need in upkeeping tech</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    Can I call you?
+                    <span class="dropdown-arrow"></span>
+                </button>
+                <div class="faq-answer">
+                    <p>nuh uh</p>
+                </div>
+            </div>
+        </section>
         <section id="about" class="section">
             <div class="about-container">
                 <h2>About Me</h2>
@@ -53,17 +97,17 @@
             <h2>Projects</h2>
             <div class="project-grid">
                 <div class="project-card">
-                    <h3>Discord Bot Development</h3>
+                    <h3>Discord Bot Development ⚙️</h3>
                     <p>Simple discord bots I made reaching over 100k users and 65+ servers</p>
                     <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygUIcmlja3JvbGw%3D" target="_blank">Warning you 👀</a>
                 </div>
                 <div class="project-card">
-                    <h3>Lapse App Testing</h3>
+                    <h3>Lapse App Testing 🛠️</h3>
                     <p>Working with the greatest people including Lapse staff and testers, continuing to make Lapse easy and fun to use!!!</p>
                     <a href="https://lapse.com" target="_blank">Lapse Website</a>
                 </div>
                 <div class="project-card">
-                    <h3>OSINT Project</h3>
+                    <h3>OSINT Project 🔐</h3>
                     <p>Creating tools to simpify searches on the internet</p>
                     <a href="https://github.com/PRJCT-OSINT" target="_blank">OSINT Project</a>
                 </div>
@@ -84,7 +128,7 @@
         </div>
     </div>
     <footer>
-        <p>&copy; 2023 John Doe. All rights reserved.</p>
+        <p>&copy; 2025 ItsDani. All rights reserved. also hai tony</p>
         <p>
             <a href="https://linkedin.com/in/danieltasci" target="_blank">LinkedIn</a> | 
             <a href="https://github.com/Execrypt" target="_blank">GitHub</a>
