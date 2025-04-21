@@ -43,32 +43,28 @@ document.addEventListener("DOMContentLoaded", () => {
     // Removed Learn More button interaction logic
     // Removed contact form submission logic
 
-    // Ensure modal is hidden on page load and set consistent color
+    // Simplify modal logic for a cleaner design
     const modal = document.getElementById("email-confirmation-modal");
     const closeBtn = document.querySelector(".close-btn");
     if (modal) {
-        modal.classList.remove("show");
-        modal.style.display = "none"; // Explicitly hide modal
-        modal.style.position = "fixed"; // Ensure modal is positioned fixed
-        modal.style.bottom = "20px"; // Position near the bottom
-        modal.style.right = "-400px"; // Start off-screen to the right
-        modal.style.width = "300px"; // Set modal width
-        modal.style.height = "auto"; // Set modal height
-        modal.style.padding = "20px"; // Add padding for content
-        modal.style.boxSizing = "border-box"; // Ensure padding doesn't affect dimensions
-        modal.style.backgroundColor = "transparent"; // Make the background transparent
-        modal.style.transition = "right 0.8s ease"; // Make the slide-in animation smoother
-        modal.style.borderRadius = "10px"; // Optional: Add rounded corners
-        modal.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)"; // Optional: Add subtle shadow
+        modal.style.display = "none"; // Hide modal initially
+        modal.style.position = "fixed";
+        modal.style.bottom = "20px";
+        modal.style.right = "-400px";
+        modal.style.width = "300px";
+        modal.style.padding = "20px";
+        modal.style.backgroundColor = "#fff"; // Use a clean white background
+        modal.style.transition = "right 0.5s ease"; // Faster slide-in animation
+        modal.style.borderRadius = "8px";
+        modal.style.boxShadow = "0 8px 16px rgba(0, 0, 0, 0.2)"; // Stronger shadow for modern look
     }
 
     if (closeBtn) {
         closeBtn.addEventListener("click", () => {
-            modal.style.right = "-400px"; // Slide modal out of view
+            modal.style.right = "-400px"; // Slide modal out
             setTimeout(() => {
-                modal.style.display = "none"; // Hide modal after animation
-                modal.classList.remove("show");
-            }, 800); // Match the transition duration
+                modal.style.display = "none";
+            }, 500); // Match transition duration
         });
     }
 
@@ -107,11 +103,17 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Toggle dropdown functionality for FAQ
+    // FAQ dropdown logic with smoother animations
     document.querySelectorAll('.faq-question').forEach(button => {
         button.addEventListener('click', () => {
             const faqItem = button.parentElement;
             faqItem.classList.toggle('open');
+            const answer = faqItem.querySelector('.faq-answer');
+            if (faqItem.classList.contains('open')) {
+                answer.style.maxHeight = answer.scrollHeight + "px"; // Expand
+            } else {
+                answer.style.maxHeight = "0"; // Collapse
+            }
         });
     });
 

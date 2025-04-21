@@ -8,31 +8,313 @@
     <link rel="icon" href="orangeheart.ico" type="image/x-icon"> <!-- Add favicon -->
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script> <!-- tsParticles library -->
     <script src="particles-config.js" defer></script> <!-- Custom particle configuration -->
+    <style>
+        .hero {
+            display: flex;
+            align-items: center; /* Center content vertically */
+            justify-content: center; /* Center content horizontally */
+            height: 100vh; /* Full viewport height */
+            margin: 0; /* Remove any default margin */
+        }
+
+        .hero-content {
+            z-index: 1;
+            text-align: center; /* Center-align text */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center horizontally */
+            justify-content: center; /* Center vertically */
+            transform: translateX(-5%); /* Move content slightly to the left */
+        }
+
+        .hero-content h1 {
+            margin-bottom: 10px; /* Reduce spacing below the heading */
+            animation: slide-in 1s ease-out; /* Apply slide-in animation */
+        }
+
+        .hero-content p {
+            margin-top: 0; /* Remove additional spacing above the subheading */
+            animation: slide-in 1.5s ease-out; /* Synchronize animation with the heading */
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)); /* Subtle gradient */
+            z-index: 0;
+        }
+
+        .btn {
+            background: #6c63ff; /* Match button color with theme */
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            margin-top: 20px; /* Add spacing above the button */
+        }
+
+        .btn:hover {
+            background: #574bff; /* Button hover effect */
+        }
+
+        .navbar {
+            background: rgba(0, 0, 0, 0.7); /* Semi-transparent navbar */
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 10;
+        }
+
+        .navbar .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #6c63ff; /* Link hover effect */
+        }
+
+        .hero-image {
+            display: none; /* Ensure any remaining styles for .hero-image are not applied */
+        }
+
+        .hero-content {
+            z-index: 1; /* Ensure text is above the image */
+            color: white;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink {
+            from, to {
+                border-color: transparent;
+            }
+            50% {
+                border-color: white;
+            }
+        }
+
+        .typing-effect {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid white;
+            animation: typing 5s linear, blink 0.5s step-end infinite; /* Use linear timing for consistent speed */
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            min-width: 50ch; /* Set a minimum width to prevent layout shifts */
+        }
+
+        .background-image {
+            background: url('Imgwaves.png') no-repeat center center/cover; /* Use Imgwaves.png as the background */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Ensure it stays behind all content */
+        }
+
+        .section-divider {
+            width: 80%;
+            height: 2px;
+            background: #6c63ff; /* Match the theme color */
+            margin: 40px auto; /* Add spacing above and below the divider */
+            border: none;
+        }
+
+        .contact-box {
+            background: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+            border-radius: 15px; /* Rounded corners */
+            padding: 30px; /* Add padding inside the box */
+            text-align: center; /* Center-align text */
+            color: white;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Add shadow for depth */
+            width: 80%;
+            margin: 40px auto; /* Center the box with spacing above and below */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center content horizontally */
+            justify-content: center; /* Center content vertically */
+        }
+
+        .contact-box h2 {
+            margin-bottom: 15px;
+            font-size: 2rem;
+            color: #6c63ff; /* Match theme color */
+        }
+
+        .contact-box p {
+            margin-bottom: 20px;
+            font-size: 1rem;
+            color: #ccc;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #6c63ff; /* Link hover effect */
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between; /* Space out logo and links */
+            align-items: center;
+        }
+
+        .navbar {
+            position: relative; /* Ensure positioning for the links */
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            margin-left: 10px; /* Add spacing between the logo and the edge */
+        }
+
+        .nav-links {
+            position: absolute;
+            top: 50%; /* Center vertically relative to the navbar */
+            transform: translateY(-50%); /* Adjust for proper centering */
+            left: 120px; /* Adjust left position to align with the logo */
+            display: flex;
+            gap: 10px; /* Reduce spacing between links */
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #6c63ff; /* Link hover effect */
+        }
+
+        .navbar {
+            position: relative; /* Ensure proper positioning for the logo and links */
+            display: flex;
+            align-items: center;
+            height: 40px; /* Set a fixed height for the navbar */
+        }
+
+        @keyframes slide-up {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slide-in {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .masked-text {
+            overflow: hidden; /* Mask the text */
+            display: inline-block; /* Ensure proper animation behavior */
+        }
+
+        @keyframes slide-in {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .masked-text-container {
+            overflow: hidden; /* Mask the text */
+            display: inline-block; /* Ensure proper animation behavior */
+        }
+
+        .masked-text {
+            display: inline-block;
+            animation: slide-in 1s ease-out; /* Apply slide-in animation */
+        }
+
+        .masked-text-delayed {
+            display: inline-block;
+            animation: slide-in 1s ease-out 0.5s; /* Apply slide-in animation with delay */
+        }
+
+        @keyframes slide-in-left-to-right {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .masked-button-container {
+            overflow: hidden; /* Mask the button */
+            display: inline-block; /* Ensure proper animation behavior */
+        }
+    </style>
 </head>
 <body>
     <div id="tsparticles"></div> <!-- Container for particle animation -->
-    <video id="background-video" autoplay muted loop>
-        <source src="purpvid.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
+    <div class="background-image"></div> <!-- Replace video with a background image -->
     <header>
         <nav class="navbar">
-            <div class="logo">ItsDani</div>
-            <ul class="nav-links">
+            <div class="logo"><a href="index.html" style="text-decoration: none; color: white;">ItsDani</a></div>
+            <ul class="nav-links" style="display: flex; list-style: none; margin: 0; padding: 0; position: absolute; top: 50%; transform: translateY(-50%); left: 120px; gap: 10px;">
                 <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
+                <li><a href="projects.html">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <a href="#contact" class="btn download-btn">Get in Touch</a>
         </nav>
     </header>
     <section class="hero">
         <div class="hero-overlay">
-            <div class="typing-effect-container"></div> <!-- Image container for purpIMG.png -->
             <div class="hero-content">
-                <h1 class="typing-effect">Young Dork, but a heavy mind in Tech</h1>
+                <h1 id="typing-effect"></h1> <!-- Replace the CSS-based typing effect -->
                 <p>Expressing my gingerness into technology</p>
-                <a href="#projects" class="btn">Explore My Work</a>
+                <a href="projects.html" class="btn">Explore My Work</a> <!-- Update the link to point to projects.html -->
             </div>
         </div>
     </section>
@@ -93,28 +375,8 @@
                 <a href="#projects" id="learn-more-btn" class="btn">Learn More</a>
             </div>
         </section>
-        <section id="projects" class="section">
-            <h2>Projects</h2>
-            <div class="project-grid">
-                <div class="project-card">
-                    <h3>Discord Bot Development ⚙️</h3>
-                    <p>Simple discord bots I made reaching over 100k users and 65+ servers</p>
-                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygUIcmlja3JvbGw%3D" target="_blank">Warning you 👀</a>
-                </div>
-                <div class="project-card">
-                    <h3>Lapse App Testing 🛠️</h3>
-                    <p>Working with the greatest people including Lapse staff and testers, continuing to make Lapse easy and fun to use!!!</p>
-                    <a href="https://lapse.com" target="_blank">Lapse Website</a>
-                </div>
-                <div class="project-card">
-                    <h3>OSINT Project 🔐</h3>
-                    <p>Creating tools to simpify searches on the internet</p>
-                    <a href="https://github.com/PRJCT-OSINT" target="_blank">OSINT Project</a>
-                </div>
-            </div>
-        </section>
         <section id="contact" class="section">
-            <div class="contact-container">
+            <div class="contact-box"> <!-- Wrap contact info in a styled box -->
                 <h2>Contact</h2>
                 <p>Have a project in mind or just want to say hi? Feel free to reach out!</p>
                 <a href="mailto:dani@itsdani.dev" class="btn">Send an Email</a>
@@ -135,5 +397,13 @@
         </p>
     </footer>
     <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const heading = document.getElementById('typing-effect');
+            heading.innerHTML = `<div class="masked-text-container"><span class="masked-text">Young Dork, but a heavy mind in Tech</span></div>`;
+            const subheading = document.querySelector('.hero-content p');
+            subheading.innerHTML = `<div class="masked-text-container"><span class="masked-text">Expressing my gingerness into technology</span></div>`;
+        });
+    </script>
 </body>
 </html>

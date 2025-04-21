@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - ItsDani</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .projects {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh; /* Ensure it takes the full viewport height */
+            text-align: center;
+            padding: 50px 20px;
+            background: url('Imgwaves.png') no-repeat center center/cover; /* Match homepage theme */
+        }
+
+        .project-grid {
+            display: grid; /* Use grid layout */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Projects side by side */
+            gap: 20px; /* Add spacing between projects */
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+            border-radius: 15px; /* Rounded corners */
+            padding: 30px; /* Add padding */
+            text-align: center;
+            color: white;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Add shadow */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px); /* Lift effect on hover */
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.6); /* Stronger shadow on hover */
+        }
+
+        .project-card h3 {
+            font-size: 1.8rem; /* Project title size */
+            margin-bottom: 15px;
+        }
+
+        .project-card p {
+            font-size: 1rem; /* Project description size */
+            margin-bottom: 15px;
+            color: #b3b3b3;
+        }
+
+        .project-card a {
+            padding: 8px 16px; /* Button size */
+            font-size: 0.9rem; /* Button text size */
+            background: #6c63ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px; /* Rounded button corners */
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .project-card a:hover {
+            background: #574bff; /* Button hover effect */
+        }
+
+        .hero {
+            background: url('Imgwaves.png') no-repeat center center/cover; /* Match homepage theme */
+            position: relative;
+            text-align: center;
+            color: white;
+            padding: 100px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .fade-divider {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
+            pointer-events: none;
+        }
+
+        .hero-content {
+            z-index: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 0;
+        }
+
+        .project-intro {
+            font-size: 1rem; /* Further reduce the size of the description text */
+            color: #ccc;
+            margin-bottom: 5px;
+        }
+
+        .project-intro p {
+            font-size: 2rem !important; /* Force smaller size for the description text */
+            color: #ccc;
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            font-size: 2rem; /* Slightly reduce the size of section headings */
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink {
+            from, to {
+                border-color: transparent;
+            }
+            50% {
+                border-color: white;
+            }
+        }
+
+        .typing-effect {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid white;
+            animation: typing 3s steps(30, end), blink 0.5s step-end infinite;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px; /* Add spacing between the two elements */
+        }
+
+        .sub-typing-effect {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid white;
+            animation: typing 4s steps(40, end), blink 0.5s step-end infinite;
+            font-size: 1.2rem;
+            font-weight: normal;
+            animation-delay: 3.5s; /* Delay to start after the first animation */
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide-up {
+            opacity: 0;
+            animation: slideUp 1s ease forwards;
+        }
+
+        .slide-up.delay {
+            animation-delay: 0.5s; /* Add delay for the second element */
+            font-size: 2rem; /* Increase the size of the subheading */
+        }
+
+        h1 {
+            font-size: 20vw; /* Use viewport width to make the title responsive and larger */
+            line-height: 1.0; /* Adjust line height for better spacing */
+        }
+
+        p {
+            font-size: 2.5rem; /* Increase the size of paragraphs */
+        }
+
+        .hero-content h1 {
+            font-size: 3vw; /* Ensure the title scales with the viewport width */
+            line-height: 1; /* Adjust line height for better spacing */
+            margin: 0; /* Remove any default margins */
+            overflow-wrap: break-word; /* Allow breaking if the text overflows */
+        }
+
+        .project-divider {
+            width: 80%; /* Match the width of the project cards */
+            height: 2px; /* Thickness of the divider */
+            background: #ccc; /* Light gray color for the divider */
+            margin: 20px auto; /* Add spacing above and below the divider */
+            opacity: 0.5; /* Slight transparency */
+        }
+
+        .angled-divider {
+            position: relative;
+            width: 100%;
+            height: 200px; /* Increase height for better visibility */
+            background: linear-gradient(to right, #6c63ff, #574bff); /* Vibrant gradient */
+            clip-path: polygon(0 0, 100% 100%, 0 100%);
+            margin: 50px 0; /* Add spacing above and below the divider */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .angled-divider .project-card {
+            width: 40%; /* Smaller width for the project inside the divider */
+            margin: 0; /* Remove extra margin */
+            transform: translateY(-20px); /* Slightly lift the project card */
+        }
+
+        @media (max-width: 768px) {
+            .project-card,
+            .angled-divider .project-card {
+                width: 100%; /* Stack projects vertically on smaller screens */
+            }
+
+            .project-left,
+            .project-right {
+                align-self: center; /* Center align on smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="tsparticles"></div> <!-- Container for particle animation -->
+    <video id="background-video" autoplay muted loop>
+        <source src="purpvid2.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <header>
+        <nav class="navbar">
+            <div class="logo">ItsDani</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">Projects</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1 class="slide-up">My Projects</h1>
+                <p class="slide-up delay">Explore the work I've done in tech and development.</p>
+            </div>
+            <div class="fade-divider"></div>
+        </section>
+        <section class="projects">
+            <h2>Featured Projects</h2>
+            <div class="project-intro">
+                <p>Here are some of the projects I've worked on. Each project showcases my skills and dedication to technology and innovation.</p>
+            </div>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>Discord Bot Development ⚙️</h3>
+                    <p>Simple discord bots I made reaching over 100k users and 65+ servers</p>
+                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygUIcmlja3JvbGw%3D" target="_blank">Learn More</a>
+                </div>
+                <div class="project-card">
+                    <h3>Lapse App Testing 🛠️</h3>
+                    <p>Working with the greatest people including Lapse staff and testers, continuing to make Lapse easy and fun to use!!!</p>
+                    <a href="https://lapse.com" target="_blank">Learn More</a>
+                </div>
+                <div class="project-card">
+                    <h3>OSINT Project 🔐</h3>
+                    <p>Creating tools to simplify searches on the internet</p>
+                    <a href="https://github.com/PRJCT-OSINT" target="_blank">Learn More</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 ItsDani. All rights reserved.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+    <script src="particles-config.js" defer></script>
+    <script>
+        // Add animation for project cards
+        document.addEventListener('DOMContentLoaded', () => {
+            const projectCards = document.querySelectorAll('.project-card');
+            projectCards.forEach((card, index) => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    card.style.opacity = 1;
+                    card.style.transform = 'translateY(0)';
+                }, index * 200); // Stagger animation
+            });
+        });
+
+        // Fade out the divider on scroll
+        document.addEventListener('scroll', () => {
+            const fadeDivider = document.querySelector('.fade-divider');
+            const scrollPosition = window.scrollY;
+            const fadeOutPoint = 100; // Adjust this value as needed
+
+            if (scrollPosition > fadeOutPoint) {
+                fadeDivider.style.opacity = 0;
+                fadeDivider.style.transition = 'opacity 0.5s ease';
+            } else {
+                fadeDivider.style.opacity = 1;
+            }
+        });
+    </script>
+</body>
+</html>
