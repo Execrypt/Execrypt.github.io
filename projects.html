@@ -67,7 +67,7 @@
         }
 
         .hero {
-            background: url('Imgwaves.png') no-repeat center center/cover; /* Match homepage theme */
+            background: url('Imgwaves.png') no-repeat center center/cover; /* Set Imgwaves.png as the background */
             position: relative;
             text-align: center;
             color: white;
@@ -192,10 +192,15 @@
         }
 
         .hero-content h1 {
-            font-size: 3vw; /* Ensure the title scales with the viewport width */
-            line-height: 1; /* Adjust line height for better spacing */
-            margin: 0; /* Remove any default margins */
+            font-size: 4rem; /* Match homepage title size */
+            line-height: 1.2; /* Adjust line height */
+            margin: 0; /* Remove default margins */
             overflow-wrap: break-word; /* Allow breaking if the text overflows */
+        }
+
+        .hero-content p {
+            font-size: 1.5rem; /* Match homepage subtitle size */
+            margin-top: 10px; /* Add spacing below the title */
         }
 
         .project-divider {
@@ -235,6 +240,41 @@
                 align-self: center; /* Center align on smaller screens */
             }
         }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between; /* Space out ItsDani and the navigation links */
+            align-items: center;
+            padding: 50px 20px;
+            background: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem; /* Increase spacing between navigation links */
+        }
+
+        .nav-links a {
+            font-family: 'Font1', sans-serif;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .nav-links li a {
+            color: white; /* Match homepage link color */
+            text-decoration: none;
+            font-size: 1rem; /* Match homepage font size */
+            margin: 0 15px; /* Add spacing between links */
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            color: #6c63ff; /* Match homepage hover effect */
+        }
     </style>
 </head>
 <body>
@@ -245,10 +285,12 @@
     </video>
     <header>
         <nav class="navbar">
-            <div class="logo">ItsDani</div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#">Projects</a></li>
+            <div class="logo"><a href="/" style="text-decoration: none; color: white;">ItsDani</a></div>
+            <ul class="nav-links" style="display: flex; list-style: none; margin: 0; padding: 0; position: absolute; top: 50%; transform: translateY(-50%); left: 120px; gap: 10px;">
+                <li><a href="#about">About</a></li>
+                <li><a href="/projects">Projects</a></li>
+                <li><a href="/lapse">Lapse</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>

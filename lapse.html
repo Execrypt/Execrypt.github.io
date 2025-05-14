@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lapse - ItsDani</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="orangeheart.ico" type="image/x-icon">
+    <style>
+        .hero {
+            background: url('Imgwaves.png') no-repeat center center/cover; /* Match homepage theme */
+            position: relative;
+            text-align: center;
+            color: white;
+            padding: 100px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .metrics {
+            display: flex;
+            justify-content: center; /* Center the metrics container */
+            align-items: center; /* Center the metrics vertically */
+            flex-wrap: wrap; /* Prevent wrapping */
+            gap: 50px; /* Add spacing between metrics */
+            margin: 100px auto; /* Center the container itself */
+            max-width: 1400px; /* Maintain width constraint */
+        }
+
+        .metric {
+            text-align: center;
+            padding: 30px; /* Add more padding for larger size */
+            border-radius: 15px; /* Slightly larger rounded corners */
+            background: none; /* Remove background */
+        }
+
+        .metric h2 {
+            font-size: 2.5em; /* Increase font size */
+            color: white; /* Ensure text is white */
+            margin-bottom: 15px; /* Add spacing below heading */
+        }
+
+        .metric p {
+            font-size: 2em; /* Adjust font size */
+            color: white; /* Ensure text is white */
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between; /* Space out ItsDani and the navigation links */
+            align-items: center;
+            padding: 30px 20px;
+            background: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem; /* Increase spacing between navigation links */
+        }
+
+        .nav-links a {
+            font-family: 'Font1', sans-serif;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .nav-links li a {
+            color: white; /* Match homepage link color */
+            text-decoration: none;
+            font-size: 1rem; /* Match homepage font size */
+            margin: 0 15px; /* Add spacing between links */
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            color: #6c63ff; /* Match homepage hover effect */
+        }
+
+        .resize-controls {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .resize-controls button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #6c63ff;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        .resize-controls button:hover {
+            background-color: #574bff;
+        }
+    </style>
+</head>
+<body>
+    <div id="tsparticles"></div> <!-- Particle effect -->
+    <nav class="navbar">
+        <div class="logo"><a href="/" style="text-decoration: none; color: white;">ItsDani</a></div>
+        <ul class="nav-links" style="display: flex; list-style: none; margin: 0; padding: 0; position: absolute; top: 50%; transform: translateY(-50%); left: 120px; gap: 10px;">
+            <li><a href="#about">About</a></li>
+            <li><a href="/projects">Projects</a></li>
+            <li><a href="/lapse">Lapse</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="hero">
+        <div class="hero-content">
+            <h1 style="margin-top: 50px; font-size: 5em;">A little something of Lapse</h1>
+            <img src="LapseShot.png" alt="Lapse Shot" style="max-width: 70%; height: auto; box-shadow: 0 4px 8px rgba(0, 0, 0, 0);">
+        </div>
+    </div>
+    <div class="metrics">
+        <div class="metric">
+            <h1>Users Banned 🔨</h1>
+            <p>2</p>
+            <p class="subtext">Users that I reported and got banned</p>
+        </div>
+        <div class="metric">
+            <h1>Community Members 🌍</h1>
+            <p>100,000</p>
+            <p class="subtext">Total Lapse Members *Probs more</p>
+        </div>
+        <div class="metric">
+            <h1>My Vibes 🔥</h1>
+            <p>danicl</p>
+            <p class="subtext">Total vibes for me</p>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+    <script src="particles-config.js" defer></script>
+    <script>
+        // Function to animate counting up numbers
+        function animateCountUp(element, targetNumber) {
+            let currentNumber = 0;
+            const increment = Math.ceil(targetNumber / 300); // Adjust speed by changing divisor
+            const interval = setInterval(() => {
+                currentNumber += increment;
+                if (currentNumber >= targetNumber) {
+                    currentNumber = targetNumber;
+                    clearInterval(interval);
+                }
+                element.textContent = currentNumber;
+            }, 20); // Adjust speed by changing interval time
+        }
+
+        // Apply animation to each metric
+        document.addEventListener('DOMContentLoaded', () => {
+            const metrics = [
+                { selector: '.metric:nth-child(1) p', target: 2 },
+                { selector: '.metric:nth-child(2) p', target: 100000 },
+                { selector: '.metric:nth-child(3) p', target: 2500 },
+            ];
+
+            metrics.forEach(metric => {
+                const element = document.querySelector(metric.selector);
+                if (element) {
+                    animateCountUp(element, metric.target);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
