@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Not Accessible</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="orangeheart.ico" type="image/x-icon">
+    <style>
+        @font-face {
+            font-family: 'Dazzed';
+            src: url('Dazzed-Medium (1).woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+        }
+
+        body {
+            background: linear-gradient(to bottom, #6c63ff, #2e2e4d); /* Purple gradient background */
+            color: white;
+            font-family: 'Dazzed', Arial, sans-serif; /* Apply Dazzed font */
+            text-align: center;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center content vertically */
+            align-items: center; /* Center content horizontally */
+            height: 100vh;
+        }
+        .message {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin: 0; /* Reset margins to ensure proper centering */
+            padding-top: calc(var(--message-padding, 0) * 200px); /* Correctly apply padding in pixels */
+        }
+        .message h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .message p {
+            font-size: 1.2em;
+        }
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .hero-content {
+            z-index: 1;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content h1 {
+            margin-bottom: 10px;
+            animation: slide-in 1s ease-out;
+        }
+
+        .hero-content p {
+            margin-top: 0;
+            animation: slide-in 1.5s ease-out;
+        }
+
+        .background-image {
+            background: url('Imgwaves.png') no-repeat center center/cover;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .btn {
+            background-color: #ff4757; /* Red background for the button */
+            color: white; /* White text color */
+            padding: 10px 20px; /* Padding for the button */
+            text-decoration: none; /* Remove underline from the link */
+            border-radius: 5px; /* Rounded corners for the button */
+            font-size: 1.2em; /* Increase font size */
+            margin-top: 20px; /* Space above the button */
+            display: inline-block; /* Make the link behave like a button */
+            transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+            position: relative;
+        }
+
+        .btn:hover {
+            background-color: #ff6b81; /* Lighter red on hover */
+        }
+
+        .btn.change-text {
+            background-color: #ff6b81; /* Lighter red */
+            content: "Why aren't you clicking the button?";
+        }
+    </style>
+</head>
+<body>
+    <div class="message">
+        <h1>oopsies You've hit a roadblock</h1>
+        <p>Unfortunately, Due to my crappy UI design, im to lazy to make to redo everything to make this site mobile friendly.
+        <br><br>
+        If you are laptor or any form of computer, 
+        continue on by going to https://itsdani.dev/ because you should not be here.
+        <br><br>
+        Luv u pooks <3
+        </p>
+        <a href="https://itsdani.dev/" class="btn">Venture into the unknown</a>
+    </div>
+    <div class="background-image"></div>
+</body>
+</html>

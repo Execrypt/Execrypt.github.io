@@ -69,15 +69,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Close modal when clicking outside of it
-    window.addEventListener("click", (e) => {
-        if (e.target === modal) {
-            modal.style.right = "-400px"; // Slide modal out of view
-            setTimeout(() => {
-                modal.style.display = "none"; // Hide modal after animation
-                modal.classList.remove("show");
-            }, 500); // Match the transition duration
-        }
-    });
+    // Ensure this logic only applies to the email-confirmation-modal
+    if (modal && modal.id === "email-confirmation-modal") {
+        window.addEventListener("click", (e) => {
+            if (e.target === modal) {
+                modal.style.right = "-400px"; // Slide modal out of view
+                setTimeout(() => {
+                    modal.style.display = "none"; // Hide modal after animation
+                    modal.classList.remove("show");
+                }, 500); // Match the transition duration
+            }
+        });
+    }
 
     // Hover effects for project links
     const projectLinks = document.querySelectorAll("#projects a");

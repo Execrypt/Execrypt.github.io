@@ -405,6 +405,12 @@
             const subheading = document.querySelector('.hero-content p');
             subheading.innerHTML = `<div class="masked-text-container"><span class="masked-text">Expressing my gingerness into technology</span></div>`;
         });
+
+        // Detect if the user is on a mobile device
+        if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+            alert("This website is not accessible on mobile devices.");
+            window.location.href = "https://itsdani.dev/404"; // Redirect to the 404 page
+        }
     </script>
 </body>
 </html>

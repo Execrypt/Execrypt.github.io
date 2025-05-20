@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lapse Selects - ItsDani</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="orangeheart.ico" type="image/x-icon">
+    <style>
+        @font-face {
+            font-family: 'PPEditorialNew';
+            src: url('PPEditorialNew-Ultralight (1).woff2') format('woff2'),
+                 url('PPEditorialNew-UltralightItalic (1).woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'WebsiteFont';
+            src: url('font1.woff2') format('woff2');
+        }
+
+        @font-face {
+            font-family: 'Dazzed';
+            src: url('Dazzed-Medium (1).woff2') format('woff2');
+        }
+
+        @font-face {
+            font-family: 'Apple Color Emoji';
+            src: local('Apple Color Emoji'), local('Segoe UI Emoji'), local('Noto Color Emoji');
+            font-style: normal;
+            font-weight: normal;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100%; /* Ensure the page takes up the full width */
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+            background: url('Imgwaves.png') no-repeat center center/cover; /* Restore Imgwaves as the website background */
+            display: flex;
+            flex-direction: column; /* Stack elements vertically */
+        }
+
+        .hero {
+            width: 100%;
+            height: auto;
+            align-items: center;
+            text-align: center;
+            padding: 90px 20px; /* Increase padding to move the text down */
+            color: white;
+            position: relative; /* Ensure proper stacking */
+            z-index: 2; /* Ensure it appears above other elements */
+        }
+
+        .hero h1 {
+            font-size: 4em; /* Restore larger font size for visibility */
+            margin-top: 0; /* Remove extra top margin */
+            line-height: 1.2; /* Adjust line height for better spacing */
+        }
+
+        .text-input {
+            width: 18%; /* Reduce the width of the input textbox */
+            padding: 10px;
+            font-size: 1.2em;
+            border: 2px solid #6b63ff00; /* Purple border */
+            border-radius: 15px; /* Add rounded corners to the input textbox */
+            background-color: #2e2e4d; /* Slightly lighter purple */
+            color: #ffffff; /* White text */
+            margin-left: 0; /* Remove left margin to separate it from the preview box */
+            margin-top: 20px; /* Add spacing above the input text */
+            font-family: 'Dazzed', sans-serif; /* Apply Dazzed font */
+        }
+
+        .info-cards {
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column; /* Stack elements vertically */
+            align-items: center; /* Center align all elements */
+            justify-content: center; /* Center elements vertically */
+            background: none;
+            padding: 20px;
+            gap: 20px; /* Add spacing between the preview box and input section */
+            position: relative;
+            z-index: 1; /* Ensure it does not overlap the hero section */
+        }
+
+        .card {
+            width: 20%; /* Reduce the width of the black box */
+            background: #000000;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+        }
+
+        .card h2 {
+            margin-bottom: 5px; /* Reduce spacing below the header */
+        }
+
+        .card p {
+            margin-top: 0; /* Remove extra spacing above the paragraph */
+        }
+
+        .preview {
+            width: 70%; /* Increase the width of the preview box */
+            height: auto;
+            aspect-ratio: 2 / 3;
+            background: #2e2e4d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #6b63ff00;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .preview img {
+            position: absolute;
+            width: auto; /* Adjust width to maintain aspect ratio */
+            height: 100%; /* Ensure full height is visible */
+            object-fit: contain; /* Prevent cropping */
+        }
+
+        .preview span {
+            font-family: 'PPEditorialNew', 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif; /* Apply PPEditorialNew font with emoji fallback */
+            font-size: 4em; /* Adjust font size for emojis */
+            z-index: 1;
+        }
+
+        .download-button {
+            padding: 13px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border: none;
+            border-radius: 15px; /* Add rounded corners to the download button */
+            background-color: #6c63ff; /* Purple button */
+            color: #ffffff; /* White text */
+            transition: background-color 0.3s ease;
+            width: 19.3%; /* Reduce the width of the download button */
+            font-family: 'Dazzed', sans-serif; /* Apply Dazzed font */
+        }
+
+        .download-button:hover {
+            background-color: #574bff; /* Brighter purple on hover */
+        }
+
+        .input-section {
+            width: 60%; /* Match the width of the preview box */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px; /* Add spacing between the input and button */
+        }
+
+        .input-section .text-input {
+            margin-bottom: 10px; /* Add spacing between the input and button */
+        }
+
+        .char-warning {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 5px;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                width: 90%; /* Make the black box take up more width on smaller screens */
+            }
+            .preview {
+                width: 70%; /* Make the preview box smaller on mobile */
+            }
+            .input-section {
+                width: 90%; /* Adjust the input section width */
+            }
+            .text-input, .download-button {
+                width: 100%; /* Make input and button full width */
+            }
+            .hero h1 {
+                font-size: 3em; /* Adjust font size for better visibility on mobile */
+                margin-top: 20px; /* Reduce top margin for smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-content">
+            <h1 style="margin-top: 50px; font-size: 5em;">Lapse Selects</h1>
+        </div>
+    </div>
+
+    <div class="info-cards">
+        <div class="card" data-card="1">
+            <h2>Lapse Selects Previewer</h2>
+            <p>Enter your text below to generate frames with anything 🤷</p>
+            <div class="preview">
+                <span></span>
+            </div>
+        </div>
+
+        <div class="input-section">
+            <p class="char-warning" style="color: red; font-size: 0.9em; display: none;">You have <span class="char-left">5</span> characters left.</p>
+            <input type="text" class="text-input" placeholder="Enter your text here...">
+            <button class="download-button">Download Frames</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script>
+        const textInput = document.querySelector('.text-input');
+        const preview = document.querySelector('.preview span');
+        const previewContainer = document.querySelector('.preview');
+        const downloadButton = document.querySelector('.download-button');
+        const charWarning = document.querySelector('.char-warning');
+        const charLeft = document.querySelector('.char-left');
+
+        const images = [
+            'FilmIMG/1.png', 'FilmIMG/2.png', 'FilmIMG/3.png', 'FilmIMG/4 (1).png',
+            'FilmIMG/5.png', 'FilmIMG/6.png', 'FilmIMG/7.png', 'FilmIMG/8.png',
+            'FilmIMG/9.png', 'FilmIMG/10.png'
+        ];
+
+        let currentFrame = 0;
+        let frames = [];
+        let previewInterval;
+
+        textInput.addEventListener('input', () => {
+            const text = textInput.value;
+            const maxLength = 10;
+            const warningThreshold = 8;
+
+            if (text.length > maxLength) {
+                textInput.value = text.slice(0, maxLength); // Enforce character limit
+            } else if (text.length >= warningThreshold) {
+                charWarning.style.display = 'block';
+                charLeft.textContent = maxLength - text.length;
+            } else {
+                charWarning.style.display = 'none';
+            }
+
+            frames = [];
+            preview.textContent = '';
+            previewContainer.style.backgroundImage = 'none'; // Clear the background image
+            currentFrame = 0;
+
+            if (text) {
+                [...text].forEach((char, index) => {
+                    frames.push({
+                        text: text.slice(0, index + 1),
+                        image: images[index % images.length]
+                    });
+                });
+                playPreview();
+            }
+        });
+
+        function playPreview() {
+            if (frames.length === 0) return;
+
+            clearInterval(previewInterval); // Clear any existing interval to avoid overlap
+
+            previewInterval = setInterval(() => {
+                const frame = frames[currentFrame];
+                preview.textContent = frame.text;
+                previewContainer.style.backgroundImage = `url(${frame.image})`;
+
+                currentFrame = (currentFrame + 1) % frames.length;
+            }, 500); // Consistent delay for smooth playback
+        }
+
+        downloadButton.addEventListener('click', () => {
+            const zip = new JSZip();
+            const folder = zip.folder("frames");
+
+            frames.forEach((frame, index) => {
+                const imageName = `frame-${index + 1}.png`;
+                fetch(frame.image)
+                    .then(response => response.blob())
+                    .then(blob => {
+                        folder.file(imageName, blob);
+                        if (index === frames.length - 1) {
+                            zip.generateAsync({ type: "blob" }).then(content => {
+                                saveAs(content, "frames.zip");
+                            });
+                        }
+                    });
+            });
+        });
+
+            // Detect if the user is on a mobile device
+            if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                alert("This website is not accessible on mobile devices.");
+                window.location.href = "https://itsdani.dev/404"; // Redirect to the 404 page
+            }
+        </script>
+</body>
+</html>

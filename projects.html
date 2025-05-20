@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects - ItsDani</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="orangeheart.ico" type="image/x-icon">
     <style>
         .projects {
             display: flex;
@@ -333,6 +334,12 @@
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
     <script src="particles-config.js" defer></script>
     <script>
+        // Detect if the user is on a mobile device
+        if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+            alert("This website is not accessible on mobile devices.");
+            window.location.href = "https://itsdani.dev/404"; // Redirect to the 404 page
+        }
+
         // Add animation for project cards
         document.addEventListener('DOMContentLoaded', () => {
             const projectCards = document.querySelectorAll('.project-card');
