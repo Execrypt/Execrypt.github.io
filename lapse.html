@@ -27,97 +27,6 @@
             min-height: 100vh;
         }
 
-        .info-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            padding: 50px;
-            max-width: 1400px;
-            margin: 0 auto;
-            background: black; /* Replace background with black */
-            background-size: cover;
-            background-position: center;
-            transform: none; /* Remove section flipping */
-            border-radius: 15px; /* Optional: Add rounded corners */
-        }
-
-        .info-cards::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('Imgwaves.png') no-repeat center center/cover;
-            transform: rotate(180deg); /* Flip the image itself */
-            z-index: -1;
-        }
-
-        .card {
-            background: rgba(24, 24, 24, 0.6); /* Slightly lighter background for better contrast */
-            border-radius: 20px;
-            padding: 30px;
-            color: white;
-            position: relative;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            min-height: 150px; /* Extend the card height to ensure the button is fully inside */
-        }
-
-        .card[data-card="1"] {
-            min-height: 200px; /* Extend only the first card's height */
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card h2 {
-            font-size: 24px;
-            margin-bottom: 15px;
-        }
-
-        .card p {
-            font-size: 16px;
-            color: #b3b3b3;
-        }
-
-        .expand-button {
-            position: absolute;
-            bottom: 20px; /* Reset button to its original position on the box */
-            right: 20px;
-            width: 30px;
-            height: 30px;
-            background: #6c63ff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: none;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .expand-button:hover {
-            background: #574bff;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: relative; /* Changed from absolute to relative */
-            top: auto; /* Reset top positioning */
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 50px; /* Increased margin to avoid overlap with the button */
-            z-index: 1000;
-            min-height: 80px; /* Extend the box height to align with the button */
-        }
-
         .metrics {
             display: flex;
             justify-content: center; /* Center the metrics container */
@@ -220,6 +129,11 @@
             background-color: #574bff;
         }
     </style>
+    <meta property="og:title" content="Lapse Page">
+    <meta property="og:description" content="Explore my obbession with Lapse.">
+    <meta property="og:image" content="https://cdn.discordapp.com/attachments/1353003366724403221/1374591586989768774/ItsDani.Dev.png?ex=682e9bad&is=682d4a2d&hm=648c4ca4df627550f262534f48fc658a2b5b999089ec530de8f0ea34ae08f569&">
+    <meta property="og:url" content="https://itsdani.dev/lapse">
+    <meta property="og:type" content="website">
 </head>
 <body>
     <div id="tsparticles" style="display: none;"></div> <!-- Removed particle effect -->
@@ -227,33 +141,6 @@
         <div class="hero-content">
             <h1 style="margin-top: 50px; font-size: 5em;">A little something of Lapse</h1>
             <img src="LapseShot.png" alt="Lapse Shot" style="max-width: 70%; height: auto; box-shadow: 0 4px 8px rgba(0, 0, 0, 0);">
-        </div>
-    </div>
-    
-    <div class="info-cards">
-        <div class="card" data-card="1">
-            <h2>The Community of Lapse</h2>
-            <p>Placeholder</p>
-            <button class="expand-button">+</button>
-            <div class="dropdown-content" style="display: none;">
-                <p>Placeholder</p>
-            </div>
-        </div>
-        <div class="card" data-card="2">
-            <h2>Use Of AI</h2>
-            <p>Experience photo enhancement with advanced AI technology.</p>
-            <button class="expand-button">+</button>
-            <div class="dropdown-content" style="display: none;">
-                <p>Experience the power of advanced AI photo enhancement. Our cutting-edge technology analyzes and enhances your photos in real-time, bringing out the best in every shot. From color correction to detail enhancement, see your photos come to life like never before.</p>
-            </div>
-        </div>
-        <div class="card" data-card="3">
-            <h2>Community Features</h2>
-            <p>Connect with over 100,000 photographers worldwide.</p>
-            <button class="expand-button">+</button>
-            <div class="dropdown-content" style="display: none;">
-                <p>Be part of a thriving community of over 100,000 photographers worldwide. Share your work, get inspired, and connect with fellow creators. Participate in weekly challenges, receive feedback, and grow your photography skills with like-minded individuals.</p>
-            </div>
         </div>
     </div>
 
@@ -303,23 +190,6 @@
                 const element = document.querySelector(metric.selector);
                 if (element) {
                     animateCountUp(element, metric.target);
-                }
-            });
-        });
-
-        // Replace modal functionality with dropdowns
-        document.querySelectorAll('.expand-button').forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const card = button.closest('.card');
-                const dropdown = card.querySelector('.dropdown-content');
-
-                if (dropdown.style.display === 'block') {
-                    dropdown.style.display = 'none';
-                    button.style.bottom = '20px'; // Reset button position when dropdown is hidden
-                } else {
-                    dropdown.style.display = 'block';
-                    button.style.bottom = '-5px'; // Move button slightly down when dropdown is shown
                 }
             });
         });
