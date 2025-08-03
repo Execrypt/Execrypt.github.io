@@ -282,30 +282,70 @@
             }, 500); // Consistent delay for smooth playback
         }
 
-        downloadButton.addEventListener('click', () => {
+        downloadButton.addEventListener('click', async () => {
+            if (frames.length === 0) {
+                alert("Please enter some text first!");
+                return;
+            }
+
             const zip = new JSZip();
             const folder = zip.folder("frames");
+            let processedFrames = 0;
 
-            frames.forEach((frame, index) => {
-                const imageName = `frame-${index + 1}.png`;
-                fetch(frame.image)
-                    .then(response => response.blob())
-                    .then(blob => {
-                        folder.file(imageName, blob);
-                        if (index === frames.length - 1) {
-                            zip.generateAsync({ type: "blob" }).then(content => {
-                                saveAs(content, "frames.zip");
-                            });
-                        }
-                    });
-            });
-        });
-
-            // Detect if the user is on a mobile device
-            if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-                alert("This website is not accessible on mobile devices.");
-                window.location.href = "https://itsdani.dev/404"; // Redirect to the 404 page
+            for (let i = 0; i < frames.length; i++) {
+                const frame = frames[i];
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                
+                // Create a temporary image element
+                const img = new Image();
+                img.crossOrigin = 'anonymous';
+                
+                await new Promise((resolve) => {
+                    img.onload = () => {
+                        // Set canvas size to match the preview aspect ratio (2:3)
+                        canvas.width = 400;
+                        canvas.height = 600;
+                        
+                        // Draw the background image
+                        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                        
+                        // Configure text styling to match the preview
+                        ctx.fillStyle = 'white';
+                        ctx.font = '48px PPEditorialNew, Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, sans-serif';
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        
+                        // Add text shadow for better visibility
+                        ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+                        ctx.shadowBlur = 4;
+                        ctx.shadowOffsetX = 2;
+                        ctx.shadowOffsetY = 2;
+                        
+                        // Draw the text in the center
+                        ctx.fillText(frame.text, canvas.width / 2, canvas.height / 2);
+                        
+                        // Convert canvas to blob and add to zip
+                        canvas.toBlob((blob) => {
+                            const imageName = `frame-${i + 1}.png`;
+                            folder.file(imageName, blob);
+                            processedFrames++;
+                            
+                            // When all frames are processed, generate and download the zip
+                            if (processedFrames === frames.length) {
+                                zip.generateAsync({ type: "blob" }).then(content => {
+                                    saveAs(content, "frames.zip");
+                                });
+                            }
+                        }, 'image/png');
+                        
+                        resolve();
+                    };
+                    
+                    img.src = frame.image;
+                });
             }
+        });
         </script>
 </body>
 </html>
